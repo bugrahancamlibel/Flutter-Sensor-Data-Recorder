@@ -7,6 +7,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:sensor_data_logging/chart.dart';
 import 'package:sensors_plus/sensors_plus.dart';
 import 'accelerometer_data.dart';
 
@@ -136,6 +137,10 @@ class _MyHomePageState extends State<MyHomePage> {
             child: const Text("Stop"),
             onPressed: () {
               print("length: ${_accelerometerData.length}");
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => ChartScreen(sensorData: _accelerometerData)),
+              );
             },
           ),
         ],
