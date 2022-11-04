@@ -10,6 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:sensor_data_logging/chart.dart';
 import 'package:sensors_plus/sensors_plus.dart';
 import 'accelerometer_data.dart';
+import 'gyroscope_data.dart';
 
 
 void main() {
@@ -49,6 +50,7 @@ class _MyHomePageState extends State<MyHomePage> {
   final _streamSubscriptions = <StreamSubscription<dynamic>>[];
 
   List<AccelerometerData> _accelerometerData = [];
+  List<GyroscopeData> _gyroscopeData = [];
 
   @override
   Widget build(BuildContext context) {
@@ -129,6 +131,12 @@ class _MyHomePageState extends State<MyHomePage> {
               _streamSubscriptions.add(
                   accelerometerEvents.listen((AccelerometerEvent event) {
                     _accelerometerData.add(AccelerometerData(DateTime.now(), <double>[event.x, event.y, event.z]));
+                  })
+              );
+              // start a stream that saves gyroscopeData
+              _streamSubscriptions.add(
+                  gyroscopeEvents.listen((GyroscopeEvent event) {
+                    _gyroscopeData.add(GyroscopeData(DateTime.now(), <double>[event.x, event.y, event.z]));
                   })
               );
             },
