@@ -52,6 +52,37 @@ class _ChartScreenState extends State<ChartScreen> {
                     // Enable data label
                     dataLabelSettings: const DataLabelSettings(isVisible: true))
               ]),
+          SfCartesianChart(
+              primaryXAxis: CategoryAxis(),
+              // Chart title
+              title: ChartTitle(text: 'Gyroscope Sensor Data'),
+              // Enable legend
+              legend: Legend(isVisible: true),
+              // Enable tooltip
+              tooltipBehavior: TooltipBehavior(enable: false),
+              series: <ChartSeries<GyroscopeData, DateTime>>[
+                LineSeries<GyroscopeData, DateTime>(
+                    dataSource: widget.gyroscopeData,
+                    xValueMapper: (GyroscopeData value, _) => value.getDate,
+                    yValueMapper: (GyroscopeData value, _) => value.getValue[0],
+                    name: 'X',
+                    // Enable data label
+                    dataLabelSettings: const DataLabelSettings(isVisible: true)),
+                LineSeries<GyroscopeData, DateTime>(
+                    dataSource: widget.gyroscopeData,
+                    xValueMapper: (GyroscopeData value, _) => value.getDate,
+                    yValueMapper: (GyroscopeData value, _) => value.getValue[1],
+                    name: 'Y',
+                    // Enable data label
+                    dataLabelSettings: const DataLabelSettings(isVisible: true)),
+                LineSeries<GyroscopeData, DateTime>(
+                    dataSource: widget.gyroscopeData,
+                    xValueMapper: (GyroscopeData value, _) => value.getDate,
+                    yValueMapper: (GyroscopeData value, _) => value.getValue[2],
+                    name: 'Z',
+                    // Enable data label
+                    dataLabelSettings: const DataLabelSettings(isVisible: true))
+              ]),
           // Expanded(
           //   child: Padding(
           //     padding: const EdgeInsets.all(8.0),
