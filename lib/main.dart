@@ -52,6 +52,8 @@ class _MyHomePageState extends State<MyHomePage> {
   List<AccelerometerData> _accelerometerData = [];
   List<GyroscopeData> _gyroscopeData = [];
 
+  int backAndForth = 0;
+
   @override
   Widget build(BuildContext context) {
     final accelerometer =
@@ -127,6 +129,10 @@ class _MyHomePageState extends State<MyHomePage> {
           ElevatedButton(
             child: const Text("Start"),
             onPressed: () {
+              if(backAndForth % 2 == 1){
+                _accelerometerData.clear();
+                _gyroscopeData.clear();
+              }
               // start a stream that saves acceleroemeterData
               _streamSubscriptions.add(
                   accelerometerEvents.listen((AccelerometerEvent event) {
@@ -139,6 +145,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     _gyroscopeData.add(GyroscopeData(DateTime.now(), <double>[event.x, event.y, event.z]));
                   })
               );
+              backAndForth++;
             },
           ),
           ElevatedButton(
