@@ -12,13 +12,6 @@ class ChartScreen extends StatefulWidget {
 }
 
 class _ChartScreenState extends State<ChartScreen> {
-  List<_SalesData> data = [
-    _SalesData('Jan', 35),
-    _SalesData('Feb', 28),
-    _SalesData('Mar', 34),
-    _SalesData('Apr', 32),
-    _SalesData('May', 40)
-  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,11 +28,11 @@ class _ChartScreenState extends State<ChartScreen> {
               legend: Legend(isVisible: true),
               // Enable tooltip
               tooltipBehavior: TooltipBehavior(enable: false),
-              series: <ChartSeries<_SalesData, String>>[
-                LineSeries<_SalesData, String>(
-                    dataSource: data,
-                    xValueMapper: (_SalesData sales, _) => sales.year,
-                    yValueMapper: (_SalesData sales, _) => sales.sales,
+              series: <ChartSeries<AccelerometerData, String>>[
+                LineSeries<AccelerometerData, String>(
+                    dataSource: widget.sensorData,
+                    xValueMapper: (AccelerometerData value, _) => value.getDate.toString(),
+                    yValueMapper: (AccelerometerData value, _) => value.getValue[0],
                     name: 'Sales',
                     // Enable data label
                     dataLabelSettings: DataLabelSettings(isVisible: true))
