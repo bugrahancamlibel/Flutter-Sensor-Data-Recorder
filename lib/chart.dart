@@ -43,6 +43,13 @@ class _ChartScreenState extends State<ChartScreen> {
                     name: 'Y',
                     // Enable data label
                     dataLabelSettings: DataLabelSettings(isVisible: true)),
+                LineSeries<AccelerometerData, DateTime>(
+                    dataSource: widget.sensorData,
+                    xValueMapper: (AccelerometerData value, _) => value.getDate,
+                    yValueMapper: (AccelerometerData value, _) => value.getValue[2],
+                    name: 'Z',
+                    // Enable data label
+                    dataLabelSettings: DataLabelSettings(isVisible: true))
               ]),
           // Expanded(
           //   child: Padding(
