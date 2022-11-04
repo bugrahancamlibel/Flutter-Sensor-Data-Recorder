@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'accelerometer_data.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
-import 'package:syncfusion_flutter_charts/sparkcharts.dart';
 
 class ChartScreen extends StatefulWidget {
   const ChartScreen({Key? key, required this.sensorData}) : super(key: key);
@@ -35,21 +34,21 @@ class _ChartScreenState extends State<ChartScreen> {
                     yValueMapper: (AccelerometerData value, _) => value.getValue[0],
                     name: 'X',
                     // Enable data label
-                    dataLabelSettings: DataLabelSettings(isVisible: true)),
+                    dataLabelSettings: const DataLabelSettings(isVisible: true)),
                 LineSeries<AccelerometerData, DateTime>(
                     dataSource: widget.sensorData,
                     xValueMapper: (AccelerometerData value, _) => value.getDate,
                     yValueMapper: (AccelerometerData value, _) => value.getValue[1],
                     name: 'Y',
                     // Enable data label
-                    dataLabelSettings: DataLabelSettings(isVisible: true)),
+                    dataLabelSettings: const DataLabelSettings(isVisible: true)),
                 LineSeries<AccelerometerData, DateTime>(
                     dataSource: widget.sensorData,
                     xValueMapper: (AccelerometerData value, _) => value.getDate,
                     yValueMapper: (AccelerometerData value, _) => value.getValue[2],
                     name: 'Z',
                     // Enable data label
-                    dataLabelSettings: DataLabelSettings(isVisible: true))
+                    dataLabelSettings: const DataLabelSettings(isVisible: true))
               ]),
           // Expanded(
           //   child: Padding(
@@ -72,11 +71,4 @@ class _ChartScreenState extends State<ChartScreen> {
           // )
         ]));
   }
-}
-
-class _SalesData {
-  _SalesData(this.year, this.sales);
-
-  final String year;
-  final double sales;
 }
