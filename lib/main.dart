@@ -147,7 +147,7 @@ class _MyHomePageState extends State<MyHomePage> {
               print("length: ${_accelerometerData.length}");
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => ChartScreen(accelerometerData: _accelerometerData)),
+                MaterialPageRoute(builder: (context) => ChartScreen(accelerometerData: _accelerometerData, gyroscopeData: _gyroscopeData)),
               );
             },
           ),

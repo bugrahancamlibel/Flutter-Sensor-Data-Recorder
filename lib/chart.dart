@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'accelerometer_data.dart';
+import 'gyroscope_data.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
 class ChartScreen extends StatefulWidget {
-  const ChartScreen({Key? key, required this.accelerometerData}) : super(key: key);
+  const ChartScreen({Key? key, required this.accelerometerData, required this.gyroscopeData}) : super(key: key);
   final List<AccelerometerData> accelerometerData;
+  final List<GyroscopeData> gyroscopeData;
 
   @override
   State<ChartScreen> createState() => _ChartScreenState();
