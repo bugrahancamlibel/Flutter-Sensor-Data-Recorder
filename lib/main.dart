@@ -1,9 +1,3 @@
-// Copyright 2017 The Chromium Authors. All rights reserved.
-// Use of this source code is governed by a BSD-style license that can be
-// found in the LICENSE file.
-
-// ignore_for_file: public_member_api_docs
-
 import 'dart:async';
 
 import 'package:flutter/material.dart';
@@ -23,9 +17,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Sensors Demo',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.teal,
       ),
       home: const MyHomePage(title: 'Flutter Demo Home Page'),
     );
@@ -52,6 +47,8 @@ class _MyHomePageState extends State<MyHomePage> {
   List<AccelerometerData> _accelerometerData = [];
   List<GyroscopeData> _gyroscopeData = [];
 
+  int backAndForth = 0;
+
   @override
   Widget build(BuildContext context) {
     final accelerometer =
@@ -66,7 +63,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Sensor Exampleee'),
+        title: const Text('Live Sensor Data'),
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -127,6 +124,10 @@ class _MyHomePageState extends State<MyHomePage> {
           ElevatedButton(
             child: const Text("Start"),
             onPressed: () {
+              if(backAndForth % 2 == 1){
+                _accelerometerData.clear();
+                _gyroscopeData.clear();
+              }
               // start a stream that saves acceleroemeterData
               _streamSubscriptions.add(
                   accelerometerEvents.listen((AccelerometerEvent event) {
@@ -139,10 +140,14 @@ class _MyHomePageState extends State<MyHomePage> {
                     _gyroscopeData.add(GyroscopeData(DateTime.now(), <double>[event.x, event.y, event.z]));
                   })
               );
+              backAndForth++;
             },
           ),
           ElevatedButton(
             child: const Text("Stop"),
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Colors.red,
+            ),
             onPressed: () {
               print("length: ${_accelerometerData.length}");
               Navigator.push(
