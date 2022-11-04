@@ -15,14 +15,14 @@ class _ChartScreenState extends State<ChartScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text('Syncfusion Flutter chart'),
+          title: const Text('Data Charts'),
         ),
         body: Column(children: [
           //Initialize the chart widget
           SfCartesianChart(
               primaryXAxis: CategoryAxis(),
               // Chart title
-              title: ChartTitle(text: 'Sensor data'),
+              title: ChartTitle(text: 'Acceleration Sensor Data'),
               // Enable legend
               legend: Legend(isVisible: true),
               // Enable tooltip
