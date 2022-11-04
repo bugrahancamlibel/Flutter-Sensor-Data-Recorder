@@ -28,10 +28,10 @@ class _ChartScreenState extends State<ChartScreen> {
               legend: Legend(isVisible: true),
               // Enable tooltip
               tooltipBehavior: TooltipBehavior(enable: false),
-              series: <ChartSeries<AccelerometerData, String>>[
-                LineSeries<AccelerometerData, String>(
+              series: <ChartSeries<AccelerometerData, DateTime>>[
+                LineSeries<AccelerometerData, DateTime>(
                     dataSource: widget.sensorData,
-                    xValueMapper: (AccelerometerData value, _) => value.getDate.toString(),
+                    xValueMapper: (AccelerometerData value, _) => value.getDate,
                     yValueMapper: (AccelerometerData value, _) => value.getValue[0],
                     name: 'Sales',
                     // Enable data label
