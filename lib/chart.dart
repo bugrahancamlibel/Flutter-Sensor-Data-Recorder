@@ -3,8 +3,8 @@ import 'accelerometer_data.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
 class ChartScreen extends StatefulWidget {
-  const ChartScreen({Key? key, required this.sensorData}) : super(key: key);
-  final List<AccelerometerData> sensorData;
+  const ChartScreen({Key? key, required this.accelerometerData}) : super(key: key);
+  final List<AccelerometerData> accelerometerData;
 
   @override
   State<ChartScreen> createState() => _ChartScreenState();
@@ -29,21 +29,21 @@ class _ChartScreenState extends State<ChartScreen> {
               tooltipBehavior: TooltipBehavior(enable: false),
               series: <ChartSeries<AccelerometerData, DateTime>>[
                 LineSeries<AccelerometerData, DateTime>(
-                    dataSource: widget.sensorData,
+                    dataSource: widget.accelerometerData,
                     xValueMapper: (AccelerometerData value, _) => value.getDate,
                     yValueMapper: (AccelerometerData value, _) => value.getValue[0],
                     name: 'X',
                     // Enable data label
                     dataLabelSettings: const DataLabelSettings(isVisible: true)),
                 LineSeries<AccelerometerData, DateTime>(
-                    dataSource: widget.sensorData,
+                    dataSource: widget.accelerometerData,
                     xValueMapper: (AccelerometerData value, _) => value.getDate,
                     yValueMapper: (AccelerometerData value, _) => value.getValue[1],
                     name: 'Y',
                     // Enable data label
                     dataLabelSettings: const DataLabelSettings(isVisible: true)),
                 LineSeries<AccelerometerData, DateTime>(
-                    dataSource: widget.sensorData,
+                    dataSource: widget.accelerometerData,
                     xValueMapper: (AccelerometerData value, _) => value.getDate,
                     yValueMapper: (AccelerometerData value, _) => value.getValue[2],
                     name: 'Z',
